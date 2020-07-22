@@ -6,15 +6,17 @@ Here are some example steps for marking annotations:
    On a terminal:
    `python mark_annotations.py --dir1 sample_data --outfile sample_data.tsv --split 0`
 
-   This will produce the tab-separated file `sample_data.tsv`
+   This will produce the tab-separated file `sample_data.tsv`.
+   
    You can read this in excel, or use the pandas package in python.
+   
    In the python console:
    `df = pd.read_csv('sample_data.tsv', sep="\t")`
 
    To avoid seeing ellipsis, you can try to just show first 5 lines like:
    `df.head(5)`. To see what columns there are, you can type `df.columns`.
 
-   It's a very useful package, so I recommend reading through a tutorial, 
+   pandas is a very useful package, so I recommend reading through a tutorial, 
    e.g. this one: https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html
 
 2. Add time info, which requires having an alignment file:
