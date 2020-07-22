@@ -2,6 +2,7 @@
 Here are some example steps for marking annotations:
 
 1. Mark boundary and disfluencies of a set of transcriptions:
+
    On a terminal:
    `python mark_annotations.py --dir1 sample_data --outfile sample_data.tsv --split 0`
 
@@ -17,6 +18,7 @@ Here are some example steps for marking annotations:
    e.g. this one: https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html
 
 2. Add time info, which requires having an alignment file:
+
    Here, it's the `sample_alignments.txt` file, a subset of full alignments given to 
    me by Gary.
 
