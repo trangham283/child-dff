@@ -8,6 +8,10 @@ from collections import Counter
 boundaries = set(['/', '//', '{H}', '{PBC}', "+"])
 noises = ["[SPOKEN NOISE]", "<inaudible>"]
 
+# This part does 2 main things:
+#  1. mark boundaries like '/', '//' and so on
+#  2. mark the range of disfluencies: i.e. in disf_span. This step was necessary
+#     for dealing with nested disfluencies. 
 def annotate_boundaries(text_file, sent_id, split_contractions=False):
     basename = os.path.basename(text_file).split("_")[0]
     lines = open(text_file).readlines()
@@ -116,6 +120,7 @@ def annotate_boundaries(text_file, sent_id, split_contractions=False):
             glob_id += 1
     return pd.DataFrame(list_row), disf_done, disf_spans, sent_id
 
+# This part uses the output of mark_annotations to add disfluency annotations
 def build_df(files1, dir1, split_contractions=False):
     list_df = []
     sent_id = 0
@@ -173,9 +178,9 @@ def build_df(files1, dir1, split_contractions=False):
 if __name__ == '__main__':
     pa = argparse.ArgumentParser(description="Annotate transcriptions")
     pa.add_argument('--dir1', type=str, \
-        default="Transcriptions_MT_V5", help="directory of transcription files")
+        default="sample_data", help="directory of transcription files")
     pa.add_argument('--outfile', type=str, \
-        default="annotations_with_levels_split_v6.tsv", help="output filename")
+        default="sample_data.tsv", help="output filename")
     pa.add_argument('--split', type=int, \
         default=0, help="split contractions flag")
 
@@ -185,6 +190,7 @@ if __name__ == '__main__':
     split_contractions = bool(args.split)
     files1 = glob.glob(dir1 + "/*.txt")
     all_df = build_df(files1, dir1, split_contractions)
+    # write to tab-separated file
     all_df.to_csv(outfile, sep="\t", index=False)
     exit(0)
 

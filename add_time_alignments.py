@@ -94,13 +94,13 @@ def get_feats(merged_df, utt_id):
 if __name__ == '__main__':
     pa = argparse.ArgumentParser(description="Annotate transcriptions")
     pa.add_argument('--tsvfile', type=str, \
-        default="annotations_with_levels.tsv", \
+        default="sample_data.tsv", \
         help="input filename (token level)")
     pa.add_argument('--alifile', type=str, \
-        default="alignments-jibo.txt", \
+        default="sample_alignments.txt", \
         help="time alignment file")
     pa.add_argument('--outfile_tsv', type=str, \
-        default="merged_time.tsv", \
+        default="sample_merged_time.tsv", \
         help="merged file")
 
     args = pa.parse_args()
